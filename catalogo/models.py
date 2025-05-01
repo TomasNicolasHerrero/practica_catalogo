@@ -1,10 +1,9 @@
-"""definición del modelo Producto"""
-
-
 # catalogo/models.py
 
 from sqlalchemy import Column, Integer, String, Float
-from catalogo.db import Base
+
+# El archivo db.py ya contiene la definición de Base
+from catalogo.db import Base  # Importación de Base desde db.py
 
 class Producto(Base):
     __tablename__ = 'productos'

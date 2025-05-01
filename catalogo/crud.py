@@ -1,7 +1,7 @@
 # catalogo/crud.py
 
-from catalogo.models import Producto
 from catalogo.db import Session
+from catalogo.models import Producto  # Importación directa de Producto
 
 # Crear un producto
 def crear_producto(nombre, descripcion, precio, stock):

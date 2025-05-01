@@ -1,5 +1,4 @@
 # catalogo/mongo_crud.py
-
 from pymongo import MongoClient
 
 # Conexión a MongoDB local
@@ -24,7 +23,7 @@ def listar_productos_mongo():
     for p in productos:
         print(f"{p['_id']} | {p['nombre']} | {p['precio']}€ | stock: {p['stock']}")
 
-# Buscar un producto por nombre
+# Buscar producto por nombre
 def buscar_producto_mongo(nombre):
     resultado = coleccion.find_one({"nombre": nombre})
     if resultado:
@@ -33,7 +32,7 @@ def buscar_producto_mongo(nombre):
     else:
         print("Producto no encontrado.")
 
-# Modificar un producto por nombre
+# Modificar producto
 def modificar_producto_mongo(nombre, nuevos_datos):
     resultado = coleccion.update_one(
         {"nombre": nombre},
@@ -44,7 +43,7 @@ def modificar_producto_mongo(nombre, nuevos_datos):
     else:
         print("No se modificó ningún producto.")
 
-# Eliminar un producto por nombre
+# Eliminar producto
 def eliminar_producto_mongo(nombre):
     resultado = coleccion.delete_one({"nombre": nombre})
     if resultado.deleted_count:

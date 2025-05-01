@@ -61,3 +61,21 @@ Para evitar errores al introducir los datos en el programa, ten en cuenta lo sig
 | `ValueError: invalid literal for int()`         | Pusiste texto o número decimal en el **stock**   | Escribe un número entero como `20`               |
 | `"Producto no encontrado."`                     | El ID introducido no existe                      | Verifica con la opción de **listar productos**   |
 | El programa se cierra inesperadamente           | Entrada vacía o tipo de dato incorrecto          | Introduce siempre el tipo de dato correcto       |
+
+## ¿Qué son las pruebas unitarias?
+
+Las pruebas unitarias son pruebas que se realizan de forma automática y que lo que hacen es verificar el comportamiento de pequeñas partes del programa de forma aislada. Lo que hacen es probar funciones o métodos para asegurarse de que están trabajando según lo esperado.
+
+## ¿Qué es TDD (Test-Driven Development)?
+
+El desarrollo guiado por pruebas (TDD) es una metodología de desarrollo de software donde las pruebas se escriben antes de implementar el código funcional. El ciclo básico de TDD es:
+
+1. Escribir una prueba para una nueva funcionalidad.
+2. Implementar el código necesario para pasar la prueba.
+3. Ejecutar la prueba.
+4. Refactorizar el código si es necesario.
+5. Repetir este ciclo de forma iterativa.
+
+## ¿Qué son los mock objects?
+
+Los mock objects son los objetos que se utilizan en las pruebas unitarias para poder simular el comportamiento de algunas partes del sistema que no estamos probando directamente. Por ejemplo, si estamos probando una función que interactúa con una base de datos, podemos usar un mock object para simular la conexión a la base de datos y las operaciones sobre ella. Esto nos permite aislar la unidad de prueba y centrarnos solo en la lógica de la función, sin depender de la base de datos real.

@@ -1,35 +1,73 @@
-# mongo_gui.py
+# main.py
+from catalogo.crud import (
+    crear_producto,
+    listar_productos,
+    buscar_producto,
+    modificar_producto,
+    eliminar_producto,
+)
 
-import tkinter as tk
-from pymongo import MongoClient
+def menu():
+    while True:
+        print("\n=== GESTOR DE CATÁLOGO ===")
+        print("1. Crear producto")
+        print("2. Listar productos")
+        print("3. Buscar producto por ID")
+        print("4. Modificar producto")
+        print("5. Eliminar producto")
+        print("0. Salir")
 
-# Conexión a MongoDB local
-client = MongoClient("mongodb://localhost:27017/")
-db = client["catalogo"]
-coleccion = db["productos"]
+        opcion = input("Selecciona una opción: ")
 
-def cargar_productos():
-    lista.delete(0, tk.END)  # Limpiar lista
-    productos = coleccion.find()
-    for p in productos:
-        linea = f"{p['nombre']} - {p['descripcion']} - {p['precio']}€ - Stock: {p['stock']}"
-        lista.insert(tk.END, linea)
+        if opcion == "1":
+            nombre = input("Nombre: ")
+            descripcion = input("Descripción: ")
+            precio = float(input("Precio: "))
+            stock = int(input("Stock: "))
+            crear_producto(nombre, descripcion, precio, stock)
 
-# Configurar ventana principal
-ventana = tk.Tk()
-ventana.title("Catálogo MongoDB")
-ventana.geometry("600x400")
+        elif opcion == "2":
+            productos = listar_productos()
+            for p in productos:
+                print(p)
 
-# Título
-titulo = tk.Label(ventana, text="Productos en MongoDB", font=("Arial", 16))
-titulo.pack(pady=10)
+        elif opcion == "3":
+            id = int(input("ID del producto: "))
+            producto = buscar_producto(id)
+            if producto:
+                print(producto)
+            else:
+                print("Producto no encontrado.")
 
-# Lista de productos
-lista = tk.Listbox(ventana, width=80, height=15)
-lista.pack()
+        elif opcion == "4":
+            id = int(input("ID del producto a modificar: "))
+            nuevo_nombre = input("Nuevo nombre (deja en blanco para no cambiar): ")
+            nueva_descripcion = input("Nueva descripción (deja en blanco para no cambiar): ")
+            nuevo_precio_input = input("Nuevo precio (deja en blanco para no cambiar): ")
+            nuevo_stock_input = input("Nuevo stock (deja en blanco para no cambiar): ")
 
-# Botón para recargar productos
-boton = tk.Button(ventana, text="Cargar productos", command=cargar_productos)
-boton.pack(pady=10)
+            nuevo_precio = float(nuevo_precio_input) if nuevo_precio_input else None
+            nuevo_stock = int(nuevo_stock_input) if nuevo_stock_input else None
 
-ventana.mainloop()
+            modificar_producto(
+                id,
+                nuevo_nombre or None,
+                nueva_descripcion or None,
+                nuevo_precio,
+                nuevo_stock
+            )
+
+        elif opcion == "5":
+            id = int(input("ID del producto a eliminar: "))
+            eliminar_producto(id)
+
+        elif opcion == "0":
+            print("Saliendo del programa.")
+            break
+
+        else:
+            print("Opción no válida. Inténtalo de nuevo.")
+
+if __name__ == "__main__":
+    menu()
+
