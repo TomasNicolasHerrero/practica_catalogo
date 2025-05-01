@@ -1,37 +1,63 @@
-# practica_catalogo 
+# 🗃️ Gestor de Catálogos
 
-# Introducción
-Este proyecto contiene códigos de ejemplo del uso de SQLAlchemy sobre una bbdd
-sqlite.
-Existen dos formas de usar SQLAlchemy: mediante ENGINE (lanzando consultas sql
-directamente) u ORM (generando los objetos a partir de la bbdd)
-## Instalación de dependencias
-El archivo requirements.txt contiene las dependencias del proyecto. Ha sido
-generado del siguiente modo:
-pip freeze >> requirements.txt
-De cara a la práctica deberéis generar un nuevo proyecto y utilizar un entorno
-virtual env o venv, según os lo especifique PyCharm en la misma pantalla donde
-estáis introduciendo la ruta y el nombre del proyecto.
-Una vez esté creado, copiaréis el archivo requirements.txt dentro del proyecto y,
-desde la terminal ABIERTA DESDE PYCHARM, ejecutaréis esta instrucción:
-pip install -r requirements.txt
-**NOTA** En mi ordenador el comando ha sido el siguiente
-(.venv) rauldelaguila@MacBook-Pro-de-Raul-2 acceso_bbdd % pip install -r
-requirements.txt
-FIJAOS QUE APARECE UN (.venv) delante de mi nombre de usuario.
-Como podéis ver, existen dos dependencias que son muy relevantes: sqlalchemy y
-sqlacodegen. Estas dependencias deben estar instaladas en vuestro proyecto.
-## sqlacodegen
-1. sqlacodegen permite generar de forma automática las clases a partir de una base
-de datos sqlalchemy. Para hacer esto sobre recetas, podéis hacer lo siguiente:
-sqlacodegen sqlite:///./recetas.db
-**NOTA** En mi línea de comandos ha sido así: (.venv) rauldelaguila@MacBook-Pro-
-de-Raul-2 acceso_bbdd % sqlacodegen sqlite:///./recetas.db >> recetas.py
-Posteriormente, el código recetas.py lo he metido dentro de un paquete nuevo (en mi
-caso ddbb)
-2. En vuestro caso, de cara al proyecto, tendréis que generar una base de datos de
-catálogo y seguir los mismos pasos.
-## Ejemplos de uso de sqlalchemy
-En este proyecto tenéis 6 códigos con ejemplos de uso de sqlalchemy. De cara a la
-práctica, fijaos en los códigos denominados ejemplo_{operacion}.py, donde
-{operacion} es actualización, borrado, query e insert.
+## ✅ Funcionalidades del programa
+
+Este gestor de catálogos permite administrar un listado de productos desde una interfaz de texto. Las funcionalidades implementadas son:
+
+### 1. Crear producto
+Permite añadir un nuevo producto al catálogo introduciendo los siguientes datos:
+- **Nombre** (texto)
+- **Descripción** (texto)
+- **Precio** (número, puede ser entero, por ejemplo: `20`, o decimal, por ejemplo: `9.99`)
+- **Stock** (número entero, por ejemplo: `15`)
+
+El producto queda registrado en la base de datos.
+
+### 2. Listar productos
+Muestra en pantalla todos los productos existentes, con sus respectivos campos: ID, nombre, descripción, precio y stock.
+
+### 3. Buscar producto por ID
+Solicita el ID del producto y muestra sus detalles si existe. En caso contrario, informa que no se ha encontrado.
+
+### 4. Modificar producto
+Permite actualizar uno o varios campos de un producto existente:
+- Se puede dejar cualquier campo en blanco si no se desea cambiar.
+- Si se introducen nuevos valores, se actualizan en la base de datos.
+
+### 5. Eliminar producto
+Elimina un producto de la base de datos introduciendo su ID.
+
+### 6. Salir
+Cierra el programa.
+
+---
+
+## 📊 Visualización con MongoDB y `pymongo` (opcional)
+
+Existe una versión alternativa del programa que utiliza **MongoDB** en lugar de una base de datos relacional. En este caso:
+
+- Se emplea `pymongo` como interfaz para conectarse a la base de datos Mongo.
+- Los productos se almacenan como documentos JSON.
+- Las funcionalidades CRUD se mantienen iguales.
+- La estructura del producto en MongoDB es:
+
+
+## 🧩 Introducción de datos: consejos y errores comunes
+
+Para evitar errores al introducir los datos en el programa, ten en cuenta lo siguiente:
+
+### ✅ Buenas prácticas
+
+- **Precio** debe ser un número, ya sea decimal (`19.99`) o entero (`20`)
+- **Stock** debe ser un número entero sin comas ni puntos
+- Los campos **nombre** y **descripción** no deben estar vacíos
+- Al modificar un producto, puedes dejar campos en blanco si no quieres cambiarlos
+
+### ⚠️ Errores comunes y soluciones
+
+| Error                                           | Causa                                            | Solución                                         |
+|------------------------------------------------|--------------------------------------------------|--------------------------------------------------|
+| `ValueError: could not convert string to float` | Introdujiste texto en el campo **precio**        | Asegúrate de escribir un número como `9.99`      |
+| `ValueError: invalid literal for int()`         | Pusiste texto o número decimal en el **stock**   | Escribe un número entero como `20`               |
+| `"Producto no encontrado."`                     | El ID introducido no existe                      | Verifica con la opción de **listar productos**   |
+| El programa se cierra inesperadamente           | Entrada vacía o tipo de dato incorrecto          | Introduce siempre el tipo de dato correcto       |
