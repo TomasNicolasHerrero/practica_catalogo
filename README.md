@@ -1,6 +1,6 @@
-# 🗃️ Gestor de Catálogos
+#  Gestor de Catálogos
 
-## ✅ Funcionalidades del programa
+##  Funcionalidades del programa
 
 Este gestor de catálogos permite administrar un listado de productos desde una interfaz de texto. Las funcionalidades implementadas son:
 
@@ -32,7 +32,7 @@ Cierra el programa.
 
 ---
 
-## 📊 Visualización con MongoDB y `pymongo` (opcional)
+## Visualización con MongoDB y `pymongo` (opcional)
 
 Existe una versión alternativa del programa que utiliza **MongoDB** en lugar de una base de datos relacional. En este caso:
 
@@ -42,18 +42,18 @@ Existe una versión alternativa del programa que utiliza **MongoDB** en lugar de
 - La estructura del producto en MongoDB es:
 
 
-## 🧩 Introducción de datos: consejos y errores comunes
+##  Introducción de datos: consejos y errores comunes
 
 Para evitar errores al introducir los datos en el programa, ten en cuenta lo siguiente:
 
-### ✅ Buenas prácticas
+###  Buenas prácticas
 
 - **Precio** debe ser un número, ya sea decimal (`19.99`) o entero (`20`)
 - **Stock** debe ser un número entero sin comas ni puntos
 - Los campos **nombre** y **descripción** no deben estar vacíos
 - Al modificar un producto, puedes dejar campos en blanco si no quieres cambiarlos
 
-### ⚠️ Errores comunes y soluciones
+###  Errores comunes y soluciones
 
 | Error                                           | Causa                                            | Solución                                         |
 |------------------------------------------------|--------------------------------------------------|--------------------------------------------------|
